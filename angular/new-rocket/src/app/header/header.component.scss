@@ -1,0 +1,43 @@
+$orange: #E0832C;
+$text: #3A3A3A;
+
+
+.container {
+    margin: 0;
+}
+.header-container {
+    top: 0;
+    left: 0;
+    width: 100vw;
+    border-top: 4px solid $orange;
+    background-color: white;
+    
+}
+
+#top-logo {
+    width: 20vw;
+    padding: 1vh 0;
+}
+
+.header-flex {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-content: center;
+
+    > p {
+        margin: 0 2vw;
+        color: $text;
+        padding: 3vh 0 2vh 0;
+    }
+}
+
+#request-circle {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: $orange;
+    color: white;
+    padding: 0 5px;
+    font-size: 1.2rem;
+}
