@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Lti provider</title>
+</head>
+<body>
+    <h1>Lti Provider</h1>
+    <h5>Send grades:</h5>
+    <button onclick="SendGrade()">Send Grade</button>
+    <script>
+        // Gets ltik from url
+        const searchParams = new URLSearchParams(window.location.search)
+        var ltik = searchParams.get('ltik')
+        if (!ltik) {
+            ltik = sessionStorage.getItem('ltik') // eslint-disable-line no-undef
+            if (!ltik) throw new Error('Missing lti key.')
+        }
+        // Saves ltik
+        sessionStorage.setItem('ltik', ltik)
+        function SendGrade () {
+            const Http = new XMLHttpRequest();
+            Http.withCredentials = true;
+            const url='https://www.sandiegocode.school/grade?ltik=' + ltik;
+            Http.open("POST", url);
+            Http.send();
+        }
+    </script>
+</body>
+</html>
