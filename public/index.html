@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Lti provider</title>
+</head>
+<body>
+    <h1>Lti Provider</h1>
+    <h5>Send grades:</h5>
+    <button onclick="SendGrade()">Send Grade</button>
+    <script>
+        // Gets ltik from url
+        const searchParams = new URLSearchParams(window.location.search)
+        var ltik = searchParams.get('ltik')
+        if (!ltik) {
+            ltik = sessionStorage.getItem('ltik') // eslint-disable-line no-undef
+            if (!ltik) throw new Error('Missing lti key.')
+        }
+        // Saves ltik
+        sessionStorage.setItem('ltik', ltik);
+        
+        function SendGrade () {
+            const url='https://c751d21a.ngrok.io/grade?ltik=' + ltik;
+            // const Http = new XMLHttpRequest();
+            // Http.open("POST", url);
+            // Http.send();
+
+            fetch(url, {
+                method: 'post',
+                headers: {
+                    'Accept': 'application/json'
+                },
+                credentials: 'same-origin', // send cookies
+                credentials: 'include',     // send cookies, even in CORS
+            })
+            .then(response => console.log(response))
+            .catch((err) => console.log('err', err));
+        }
+
+        
+    </script>
+</body>
+</html>
+
